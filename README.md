@@ -1,85 +1,33 @@
-# PRA
+# cleared_brains
 
 ## Purpose
 The goals of this repo are:
-1. Allow others to replicate our lightsheet manuscript
-2. Allow non-Brody users to use and take advantage of these tools
-3. Allow Brody lab members easy access to the tools developed and implemented on Priniceton's HPC spock
+1. to build on PRA repo, which produced the 2024 Dennis et al manuscript
+2. include new tools and documentation as environments/processes evolve
+3. share with our collaborators and later the public as we produce manuscripts
 
 ## To use
 1. Clone this repo
 2. Generate the lightsheet environment
-   - in PRA, `conda env create -f environment.yaml`
-3. If not at Princeton, install Elastix
-    - see the end of this document for tips
+   - in the repo folder, `conda env create -f environment.yaml` this will create an environment called PRA
+3. If not already done, install Elastix
 
 ## Data
-Even our downsampled files are large, so we have deposited the main files you'll need at figshare here: https://figshare.com/articles/dataset/Princeton_RAtlas_PRA_/24207429
-If you require the raw data (which is hundreds of Gb to some Tb per brain) email the authors and we will get you connected to Princeton IT to get a Globus link for accessing those data.
+Even downsampled files are large, so we have deposited the main files from the PRA manuscript at figshare here: https://figshare.com/articles/dataset/Princeton_RAtlas_PRA_/24207429
 
 ## Acknowledgements
-This code builds heavily off of BrainPipe from Tom Pisano, Zahra Dahanerawala, and Austin Hoag. It also benefitted greatly from Nick Del Grosso and BrainGlobe.
+This code builds directly off of PRA, which itself built heavily off of BrainPipe from Tom Pisano, Zahra Dahanerawala, and Austin Hoag. It also benefitted greatly from Nick Del Grosso and BrainGlobe.
 
 ## Citations
-- Our protocol https://en.bio-protocol.org/en/bpdetail?id=4854&type=0 
+- Our PRA protocol https://en.bio-protocol.org/en/bpdetail?id=4854&type=0 
 - BrainPipe https://github.com/PrincetonUniversity/BrainPipe
 - BrainRender https://www.biorxiv.org/content/10.1101/2020.02.23.961748v2
 - Pisano _et al_ 2022 https://www.sciencedirect.com/science/article/pii/S2666166722001691
 
 ## *INSTALLATION INSTRUCTIONS*:
-* Note that this currently has only been tested on Linux (Ubuntu 16 and 18). SimpleElastix installation has also been tested in Windows 10 by Adrian.
-* If on a cluster - Elastix needs to be compiled on the cluster - this was challenging for IT here and suspect it will be for your IT as well. If at Princeton, elastix is on spock
+* If on a cluster - Elastix needs to be compiled on the cluster - this was challenging for IT here and suspect it will be for your IT as well.
 
-### Install simpleelastix
-*_For Windows_*, Follow the instructions on [read the docs](https://simpleelastix.readthedocs.io/GettingStarted.html#compiling-on-windows).
-Use the command line step (step 3) and skip the IDE steps 4 and 5.  If the Python wrapping fails, see this [known issue](https://github.com/SuperElastix/SimpleElastix/issues/243).
-
--------------
-_*To install elastix on linux*_, follow the instructions in the manual under the easy way, not the "super easy" way
-
-if you use the 'easy way' but have a modern computer, your gcc version may be too high. For this, you'll need at least ITK 5.0 which means you need to use elastix version 5, not 4.8. The following worked on Ubuntu 18 with two GeForce RTX 2070 SUPERs.
-
-- made two dirs: ITK-build and elastix-build
-- added ITKSNap 5
-  file:///tmp/mozilla_emilyjanedennis0/InsightSoftwareGuide-Book1-5.1.0.pdf
-  extracted downloaded .tar.gz and .tar.bz2 files to those directories
-  in ITK-build, typed  `cmake ITK-build`
-  then `sudo make install`
-  in elastix-build, `cmake elastix-build` failed, so I went into the folder and found the CMakeFiles.txt
-  `cd elastixfolder
-  nano CMakeLists.txt`
-  and added `list( APPEND CMAKE_PREFIX_PATH "/home/emilyjanedennis/Desktop/Apps/ITK-build/" )`
-
-  note: I had to remove line 76 from `elastix-5.0.0/Components/Resamplers/MyStandardResampler/elxMyStandardResampler` which referred to an  undefined type called PointType which was throwing an exception during the make install process for elastix
-
-[Download](https://github.com/abria/TeraStitcher/wiki/Binary-packages) TeraStitcher-installer. Move file to wherever you want Terastitcher to live, cd into that directory, and then:
-```
-$ bash TeraStitcher-Qt4-standalone-1.10.18-Linux
-```
-* Modify Path in ~/.bashrc:
-
-```
-export PATH="<path/to/software>/TeraStitcher-Qt4-standalone-1.10.18-Linux/bin:$PATH"
-```
-* Check to see if successful
-
-```
-$ which terastitcher
-```
-
-
-## Princeton-specific instructions
-If on the cluster, and typing which terastitcher can't find terastitcher, try adding the following to your path
-
-```
-export PATH="/usr/people/pnilsadmin/TeraStitcher-Qt4-standalone-1.10.11-Linux/bin$PATH"
-```
-
-### If on a local Ubuntu machine also install elastix (see section above), xvfb, Terastitcher:
-
-```
-$ sudo apt-get install xvfb
-```
+------------ not edited below here
 
 # Using raw lightsheet images to:
 
