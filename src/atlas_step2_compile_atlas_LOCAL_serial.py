@@ -9,7 +9,6 @@ Created on Sat Nov 16 13:49:34 2019
 import os, tifffile, cv2, numpy as np, multiprocessing as mp, sys, shutil, subprocess as sp
 from scipy.ndimage import zoom
 sys.path.append("..")
-from tools.imageprocessing.orientation import fix_orientation
 
 def listdirfull(x, keyword=False):
     """
@@ -138,23 +137,23 @@ def generate_median_image(output_folder, parameters, memmappth, dst, verbose = T
 
 if __name__ == "__main__":
 
-    src = "/home/emilyjanedennis/Desktop"
+    src = "/home/dennislab2/Desktop"
 
-    brains = ["k320","k327","t107","k321","k323","f002","f110","f003"]
+    brains = ["mc6_sag","mc7_sag"]
     #brains = ["f110","f003","t107","k320","k321","k323","k327","f002"]
     #inputs = [os.path.join(src, xx+"/downsized_for_atlas.tif") for xx in brains]
 
-    output_fld = "/home/emilyjanedennis/Desktop/PRA_f_out"
+    output_fld = "/home/dennislab2/Desktop/TCA_out"
     if not os.path.exists(output_fld): os.mkdir(output_fld)
 
-    data_fld = "/home/emilyjanedennis/Desktop/for_registration_to_lightsheet/tiffs"
+    data_fld = "/home/dennislab2/Desktop/brains"
 
     #registration to seed
-    parameterfld = "/home/emilyjanedennis/Desktop/GitHub/rat_BrainPipe/parameterfolder/"
+    parameterfld = "/home/dennislab2/Desktop/GitHub/cleared_brains/parameter_folder/"
     parameters = [os.path.join(parameterfld, xx) for xx in os.listdir(parameterfld)]
     parameters.sort()
     #brain to register all other brains to
-    seed = os.path.join(data_fld, "PRAf_seed4.tif")
+    seed = os.path.join(data_fld, "mc4_sag.tif")
     #Location to make a memory mapped array
     #memmappth = os.path.join(output_fld, "memmap3.npy")
     #Location to save out our atlas (median image)

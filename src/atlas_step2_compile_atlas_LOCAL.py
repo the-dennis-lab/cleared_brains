@@ -138,25 +138,25 @@ def generate_median_image(output_folder, parameters, memmappth, dst, verbose = T
 
 if __name__ == "__main__":
 
-    src = "/home/emilyjanedennis/Desktop"
+    src = "/home/dennislab2/Desktop"
 
     brains = ["f110","f003","t107","k320","k321","k323","k327","f002"]
     #inputs = [os.path.join(src, xx+"/downsized_for_atlas.tif") for xx in brains]
 
-    output_fld = "/home/emilyjanedennis/Desktop/PRA_f_out"
+    output_fld = "/home/dennislab2/Desktop/TCA_out"
     if not os.path.exists(output_fld): os.mkdir(output_fld)
 
-    data_fld = "/home/emilyjanedennis/Desktop/for_registration_to_lightsheet/tiffs"
+    data_fld = "/home/dennislab2/Desktop/brains"
 
     #registration to seed
-    parameterfld = "/home/emilyjanedennis/Desktop/GitHub/rat_BrainPipe/parameterfolder/"
+    parameterfld = "/home/emilyjanedennis/Desktop/GitHub/cleared_brains/parameterfolder/"
     parameters = [os.path.join(parameterfld, xx) for xx in os.listdir(parameterfld)]
     #brain to register all other brains to
-    seed = os.path.join(data_fld, "PRAf_seed3.tif")
+    seed = os.path.join(data_fld, "mc4_sag.tif")
     #Location to make a memory mapped array
-    memmappth = os.path.join(output_fld, "memmap3.npy")
+    memmappth = os.path.join(output_fld, "memmap0.npy")
     #Location to save out our atlas (median image)
-    final_output_path = os.path.join(output_fld, "PRA_from_f.tif")
+    final_output_path = os.path.join(output_fld, "avg0.tif")
 
     #run registration
     #make output folder:
@@ -188,4 +188,4 @@ if __name__ == "__main__":
     sys.stdout.write("completed.".format(os.path.basename(brain))); sys.stdout.flush()
 
     #RUN AFTER ALL REGISTERATIONS ARE COMPLETE (locally or on head node, do not need a job for this)
-    #generate_median_image(output_fld, parameters, memmappth, final_output_path, verbose = True)
+    generate_median_image(output_fld, parameters, memmappth, final_output_path, verbose = True)
