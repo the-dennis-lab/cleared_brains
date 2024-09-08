@@ -4,7 +4,7 @@
 @author: ejdennis with serious borrowing from wanglab
 """
 
-import os, sys, csv, json, shutil, cv2, pickle
+import os, sys, csv, json, shutil, pickle#, cv2
 import numpy as np
 import pandas as pd
 import SimpleITK as sitk
