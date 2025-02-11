@@ -54,7 +54,10 @@ if __name__ == "__main__":
 			df['z_ds']=(df.z_adj*(dsz/dims[2])).astype(int)
 			df.to_csv(os.path.join(outfld,file[:-4]+'.csv'))
 			# reformat for transformix
+			intermediate=df[['x_ds','y_ds','z_ds']]
+			intermediate.columns=['x','y','z']
 			transformix_df = pd.DataFrame([['point','',''],[str(len(df)),'','']],columns=['x','y','z'])
-			transformix_df[['x','y','z']]=df[['x_ds','y_ds','z_ds']]
+			transformix_df = pd.DataFrame([['point','',''],[str(len(df)),'','']],columns=['x','y','z'])
+			transformix_df=pd.concat([transformix_df,intermediate]).reset_index(drop=True)
 			print('=================================')
-			transformix_df.to_csv(os.path.join(outfld,file[:-4]+'_for-transformix.csv'))
+			transformix_df.to_csv(os.path.join(outfld,file[:-4]+'_for-transformix.txt'),sep=' ',header=None,index=None)

@@ -40,10 +40,6 @@ if __name__ == "__main__":
 	if len(transform_files)==0:
 		print('ERROR, there are no TransformParameters files in the folder supplied! \n check the folder: {}'.format(transform_folder))
 	try:
-		points_df=pd.read_csv(points_csv)
-	except:
-		print('ERROR: you entered {} but this is not a csv file!'.format(points_csv))
-	try:
 		mv=itk.imread(mv_file)
 	except:
 		print('ERROR! {} is not an image file or cannot be opened'.format(mv_file))
@@ -71,8 +67,10 @@ if __name__ == "__main__":
 	# for example, to get points in the allen atlas, you should be using a transform folder produced
 	# by aligning the allen (mv) TO your brain with cells (fx)
 	transformixed_coords=itk.transformix_pointset(mv, transform_to_apply,fixed_point_set_file_name=points_csv,output_directory=output_directory)
-	dfx=pd.DataFrame(transformed_coords)
+	dfx=pd.DataFrame(transformixed_coords)
 	dfx.columns = dfx.columns.astype(str)
+	print('dfx cols are : {}'.format(dfx.columns))
+	dfx.to_csv(os.path.join(output_directory,'points_out_test.csv'))
 	dfx = dfx[['46','47','48']]
 	dfx.columns = ['x','y','z']
 	dfx.x=dfx.x.astype(int)
