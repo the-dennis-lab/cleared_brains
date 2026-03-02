@@ -1,6 +1,6 @@
 source ./config_file.sh
 
-# you need to update "BRAIN_VOL's path" to adjust
+# you need to update "BRAIN_VOL's path" to adjust for your paths
 ANN_VOL="${CLEARED_BRAINS_FLD}/data/annotation_template_25_resliced.tif"
 ANN_CSV="${CLEARED_BRAINS_FLD}/data/allen_anns-and-labels.csv"
 ANN_MASK="${CLEARED_BRAINS_FLD}/data/ann_mask.tif"
