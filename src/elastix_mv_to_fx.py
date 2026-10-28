@@ -4,10 +4,11 @@
 INPUTS: 
 1. full path (str) to a tif file (moving volume)
 2. full path (str) to a tif file (fixed volume)
+3. number of transforms to use
 
 OPTIONAL INPUTS
-3. full path (str) to an output directory, if none, will use working directory + /transformix_out
-4. full path (str) to an annotation file, if none, will not use
+4. full path (str) to an output directory, if none, will use working directory + /transformix_out
+5. full path (str) to an annotation file, if none, will not use
 
 OUTPUTS:
 1. folder in working directory or output directory of elastix alignment results
@@ -54,6 +55,7 @@ if __name__ == "__main__":
 	fx_base=os.path.basename(fx_file).split('.')[0]
 
 	num_transforms=int(sys.argv[3])
+	print('number of transforms used: ', num_transforms)
 
 	if len(sys.argv[4]) > 1:
 		output_dir = sys.argv[4]
@@ -64,8 +66,8 @@ if __name__ == "__main__":
 		if not os.path.isdir(output_dir):
 			os.mkdir(output_dir)
 		print('using {} as ouput directory'.format(os.path.dirname(fx_file)))
-	if len(sys.argv[4]) > 1:
-		ann_file = sys.argv[4]
+	if len(sys.argv[5]) > 1:
+		ann_file = sys.argv[5]
 		if not os.path.isfile(ann_file):
 			ann_vol=0
 			print('ann_file entered is not a real file, not using ann file {}'.format(ann_file))
@@ -75,7 +77,7 @@ if __name__ == "__main__":
 		else:
 			ann_vol = itk.imread(ann_file,pixel_type=itk.US)
 			print('using ann file: {}'.format(ann_file))
-			ann_base = os.path.basename(ann_vol).split('.')[0]
+			ann_base = os.path.basename(ann_file).split('.')[0]
 	else:
 		ann_vol=0
 	mv = itk.imread(mv_file,pixel_type=itk.US)
@@ -88,10 +90,10 @@ if __name__ == "__main__":
 	parameter_object.AddParameterFile('../parameter_folder/Order1_Par0000affine.txt')
 	if num_transforms>1:
 		parameter_object.AddParameterFile('../parameter_folder/Order3_Par0000bspline.txt')
-	elif num_transforms>2:
-		parameter_object.AddParameterFile('../parameter_folder/Order3_Par0000bspline.txt')
-	else:
-		parameter_object.AddParameterFile('../parameter_folder/Order3_Par0000bspline.txt')
+	if num_transforms>2:
+		parameter_object.AddParameterFile('../parameter_folder/Order4_Par0000bspline.txt')
+	if num_transforms>3:
+		parameter_object.AddParameterFile('../parameter_folder/Order5_Par0000bspline.txt')
 
 	# align mv to fx
 	result_img_elx, result_transform_params = itk.elastix_registration_method(fx,mv,parameter_object, log_to_file=True,output_directory = output_dir)

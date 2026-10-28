@@ -1,0 +1,38 @@
+/groups/dennis/home/dennise/.lsbatch/1792788908.155008408: line 8: 2: command not found
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@h06u14>
+Subject: Job 155008408: <2 logs/cast55_60.txt ./0_elastix_run.sh /groups/dennis/dennislab/Imaging/raw_imaging_data/2026-09-21_135715/processed/bigstitcher/2026-09-21_135715_fused_12.tif /groups/dennis/dennislab/Imaging/raw_imaging_data/2026-09-22_110453/processed/bigstitcher/2026-09-22_110453_fused_12.tif /groups/dennis/dennislab/Imaging/Mus/cast55_60> in cluster <Janelia> Exited
+
+Job <2 logs/cast55_60.txt ./0_elastix_run.sh /groups/dennis/dennislab/Imaging/raw_imaging_data/2026-09-21_135715/processed/bigstitcher/2026-09-21_135715_fused_12.tif /groups/dennis/dennislab/Imaging/raw_imaging_data/2026-09-22_110453/processed/bigstitcher/2026-09-22_110453_fused_12.tif /groups/dennis/dennislab/Imaging/Mus/cast55_60> was submitted from host <e02u30> by user <dennise> in cluster <Janelia> at Fri Oct 23 16:55:08 2026
+Job was executed on host(s) <h06u14>, in queue <local>, as user <dennise> in cluster <Janelia> at Fri Oct 23 16:55:08 2026
+</groups/dennis/home/dennise> was used as the home directory.
+</groups/dennis/dennislab/dennise/github/cleared_brains/src> was used as the working directory.
+Started at Fri Oct 23 16:55:08 2026
+Terminated at Fri Oct 23 16:55:09 2026
+Results reported at Fri Oct 23 16:55:09 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+2 logs/cast55_60.txt ./0_elastix_run.sh /groups/dennis/dennislab/Imaging/raw_imaging_data/2026-09-21_135715/processed/bigstitcher/2026-09-21_135715_fused_12.tif /groups/dennis/dennislab/Imaging/raw_imaging_data/2026-09-22_110453/processed/bigstitcher/2026-09-22_110453_fused_12.tif /groups/dennis/dennislab/Imaging/Mus/cast55_60
+------------------------------------------------------------
+
+Exited with exit code 127.
+
+Resource usage summary:
+
+    CPU time :                                   0.04 sec.
+    Max Memory :                                 21 MB
+    Average Memory :                             20.67 MB
+    Total Requested Memory :                     15360.00 MB
+    Delta Memory :                               15339.00 MB
+    Max Swap :                                   -
+    Max Processes :                              1
+    Max Threads :                                2
+    Run time :                                   2 sec.
+    Turnaround time :                            1 sec.
+
+The output (if any) is above this job summary.
+
